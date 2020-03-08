@@ -108,7 +108,7 @@ class Wcfv_Public {
 			return $html;
 
 
-		$video = '<div data-thumb="http://figarts.local/wp-content/uploads/2020/02/hoodie_3_front-100x100.jpg" class="woocommerce-product-gallery__image woofv_video">' . do_shortcode('[video width="1280" height="720" autoplay=0 mp4="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"][/video]') . '</div>';
+		$video = '<div data-thumb="http://figarts.local/wp-content/uploads/2020/02/hoodie_3_front-100x100.jpg" class="woocommerce-product-gallery__image woofv_video">' . do_shortcode('[video width="1280" height="720" autoplay=off mp4="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"][/video]') . '</div>';
 
 		$html = $video . $html;
 

@@ -140,7 +140,14 @@ class Woofv_MetaBox {
   }
   
 
-  function create(){
-    add_meta_box($this->get_id(), $this->get_title(), $this->get_callback(), $this->get_screens(), $this->get_context(), $this->get_priority());
+  public function create(){
+		add_meta_box(
+			$this->get_id(), 
+			$this->get_title(), 
+			$this->get_callback(), 
+			$this->get_screens(), 
+			$this->get_context(), 
+			$this->get_priority()
+		);
   }
 }

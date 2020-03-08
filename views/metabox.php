@@ -1,35 +1,41 @@
 <?php
 	// Variables
 	global $post;
-	$saved = get_post_meta( $post->ID, 'myplugin_media_id', true );
+	$saved = get_post_meta( $post->ID, '_woofv_video_embed', true );
+	$video = isset($saved['url']) ? $saved['url'] : '';
+	$thumbnail = isset($saved['thumbnail']) ? $saved['thumbnail'] : '';
+	$poster = isset($saved['poster']) ? $saved['poster'] : '';
+	$autoplay = isset($saved['autoplay']) ? $saved['autoplay'] : '0';
+	wp_nonce_field( 'woofv_video_box', 'woofv_video_box_nonce' );
 ?>
 
 <fieldset>
 
-	<div>
-		<?php
-		/**
-		 * The label for the media field
-		 */
-		?>
-		<label for="myplugin_media"><?php _e( 'Field Label', 'events' ); ?></label><br>
+	<p>
+		<label for="woofv_video_embed[url]"><?php _e( 'Video URL', 'woofv' ); ?></label><br/>
+		<input type="url" class="" name="woofv_video_embed[url]" id="woofv_video_embed_url" value="<?php echo esc_attr( $video ); ?>">
+		<button type="button" class="button" id="events_video_upload_btn" data-woofv-uploader-target="#woofv_video_embed_url"><?php _e( 'Upload', 'myplugin' ); ?></button>
+	</p>
 
-		<?php
-		/**
-		 * The actual field that will hold the URL for our file
-		 */
-		?>
-		<input type="url" class="large-text" name="myplugin_media" id="myplugin_media" value="<?php echo esc_attr( $saved ); ?>"><br>
+	<p>
+		<label for="woofv_video_embed[thumbnail]"><?php _e( 'Gallery Thumbnail', 'woofv' ); ?></label><br/>
+		<input type="url" class="" name="woofv_video_embed[thumbnail]" id="woofv_video_embed_thumbnail" value="<?php echo esc_attr( $thumbnail ); ?>">
+		<button type="button" class="button" id="events_video_upload_btn" data-woofv-uploader-target="#woofv_video_embed_thumbnail"><?php _e( 'Upload', 'myplugin' ); ?></button>
+	</p>
 
-		<?php
-		/**
-		 * The button that opens our media uploader
-		 * The `data-media-uploader-target` value should match the ID/unique selector of your field.
-		 * We'll use this value to dynamically inject the file URL of our uploaded media asset into your field once successful (in the myplugin-media.js file)
-		 */
-		?>
-		<button type="button" class="button" id="events_video_upload_btn" data-media-uploader-target="#myplugin_media"><?php _e( 'Upload Media', 'myplugin' ); ?></button>
-	</div>
+	<p>
+		<label for="woofv_video_embed[poster]"><?php _e( 'Video poster', 'woofv' ); ?></label><br/>
+		<input type="url" class="" name="woofv_video_embed[poster]" id="woofv_video_embed_poster" value="<?php echo esc_attr( $poster ); ?>">
+		<button type="button" class="button" id="events_video_upload_btn" data-woofv-uploader-target="#woofv_video_embed_poster"><?php _e( 'Upload', 'myplugin' ); ?></button>
+	</p>
+
+	<p>
+		<label for="woofv_video_embed[autoplay]"><?php _e( 'Autoplay', 'woofv' ); ?></label><br/>
+		<select name="woofv_video_embed[autoplay]" id="woofv_video_embed_autoplay">
+			<option value="0" <?php selected($autoplay, '0') ?>><?php _e( 'No', 'myplugin' ); ?></option>
+			<option value="1" <?php selected($autoplay, '1') ?>><?php _e( 'Yes', 'myplugin' ); ?></option>
+		</select>
+	</p>
 
 </fieldset>
 
